@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de PDF</title>
+    <style>
+        /* Estilos del encabezado */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ff9100; /* Color del fondo del cuerpo */
+        }
+        header {
+            width: 100%;
+            text-align: center;
+            background-color: #a85a00; /* Color de fondo del encabezado */
+            color: rgb(255, 255, 255); /* Color del texto en el encabezado */
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        header img {
+            max-width: 450px;
+            margin-bottom: 100px;
+        }
+        
+        /* Estilos de los botones de pestañas */
+        nav {
+            margin: 10px 0;
+        }
+        .tab-button {
+            padding: 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #ffc863;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+        }
+        .tab-button.active {
+            background-color: #ffc863;
+        }
+        
+        /* Contenedor para los PDFs */
+        .pdf-container {
+            width: 80%;
+            height: 600px;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="media/LOGO.png" alt="Logo">
+        <h1>Manuales de Usuario</h1>
+    </header>
+    
+    <!-- Pestañas con nombres personalizados -->
+    <nav>
+        <button class="tab-button active" onclick="mostrarPDF('pdf1')">Manual Usuario</button>
+        <button class="tab-button" onclick="mostrarPDF('pdf2')">Manual Tecnico</button>
+    </nav>
+
+    <div class="pdf-container">
+        <iframe id="pdfViewer" src="media/Manual de usuario ALPACA.pdf" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function mostrarPDF(pdf) {
+            const pdfViewer = document.getElementById("pdfViewer");
+            const buttons = document.querySelectorAll(".tab-button");
+
+            // Cambia la ruta según el documento seleccionado
+            if (pdf === 'pdf1') {
+                pdfViewer.src = "media/Manual de usuario ALPACA.pdf";
+            } else {
+                pdfViewer.src = "media/Manual Tecnico ALPACA.pdf";
+            }
+
+            // Actualiza el estilo activo del botón seleccionado
+            buttons.forEach(button => button.classList.remove("active"));
+            event.target.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
